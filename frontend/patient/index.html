@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>PATIENT</title>
 
-    <link rel="icon" href="../imgs/temp-logo.png">
-
-    <!-- Link to My CSS Sheet-->
-    <link rel="stylesheet" type="text/css" href="../styles/patient.css">
+    <link rel="icon" href="/imgs/temp-logo.png">
 
     <!-- Link to Bulma -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" integrity="sha256-D9M5yrVDqFlla7nlELDaYZIpXfFWDytQtiV+TaH6F1I=" crossorigin="anonymous">
+
+    <!-- Link to My CSS Sheet-->
+    <link rel="stylesheet" type="text/css" href="../styles/patient.css">
     
 
 </head>
@@ -23,7 +23,7 @@
     <nav class="navbar has-shadow is-spaced " role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="https://bulma.io">
-                <img src="../imgs/temp-logo-2.png" width="28" height="28">
+                <img src="/imgs/temp-logo-2.png" width="28" height="28">
             </a>
           
             <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -80,6 +80,10 @@
         </div>
     </nav>
     
+    <div id="root" class="columns">
+        <div class="datePanel column is-one-fifth"></div>
+        <div class="logView column is-four-fifths"></div>
+    </div>
 
 </body>
 
@@ -112,6 +116,13 @@
 
     });
 </script>
+
+<script src="../scripts/patientView.js" type="module"></script>
+<script src="../scripts/api.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
 
 </html>
 

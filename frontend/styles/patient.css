@@ -3,16 +3,71 @@
 } */
 
 html {
-    overflow-y: auto !important;
+    overflow-y: auto;
 }
 
 .bg-blue {
-    background-color: blue !important;
+    background-color: blue;
 }
-
 
 @media screen and (min-width: 1024px) {
     .navbar.is-spaced {
         padding: 1rem 2rem;
     }
 }
+
+body {
+    height: 100vh;
+}
+
+.navbar {
+    height: 10%;
+}
+
+#root {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+}
+
+.datePanel {
+    padding: 0;
+    border: solid 1px black;
+}
+
+.datePanel .dateObj {
+    /* border: dashed 1px red; */
+    background-color: whitesmoke;
+    text-align: center;
+}
+
+.datePanel .dateObj h1 {
+    width: 90%;
+    padding: .5em;
+}
+
+.datePanel .dateObj:hover {
+    background-color: gray;
+}
+
+.datePanel .activeDate {
+    background-color: wheat;
+}
+
+.datePanel .activeDate:hover {
+    background-color: wheat;
+}
+
+.logView {
+    border: solid 1px black;
+    padding: 1em;
+}
+
+.logView .logMoodSelector img {
+    width: 10vw;
+}
+
+/* .logView .logMoodSelector .active {
+    border: solid 1px red;
+} */

@@ -6,7 +6,7 @@ function getLogs() {
                     id: "3udiuw2",
                     date: Date.now() - 1000,
                     object: {
-                        mood: 8,
+                        mood: 5,
                         message: "Wow!"
                     }
                 },
@@ -14,7 +14,7 @@ function getLogs() {
                     id: "3udiuq3221nw2",
                     date: Date.now() - 1500,
                     object: {
-                        mood: 6,
+                        mood: 3,
                         message: "coool"
                     }
                 }

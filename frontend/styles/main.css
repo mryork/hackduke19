@@ -1,0 +1,35 @@
+
+.bg-pastel-yellow {
+    background-color: #fffdbc ;
+}
+
+.dark-yellow {
+    color: #947600 !important;
+}
+
+
+html {
+    overflow-y: hidden !important;
+}
+
+.logo {
+    width: 75% ;
+}
+
+.mg-bot-75 {
+    margin-bottom: 40px;
+}
+
+.mg-top-75 {
+    margin-top: 40px; 
+}
+
+
+
+@media screen and (min-width: 600px) {
+    .logo{
+        width: 25%;
+    }
+}
+
+

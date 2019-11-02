@@ -1,0 +1,13 @@
+.bg-pastel-yellow {
+    background-color: #fffdbc ;
+}
+
+
+html {
+    overflow-y: hidden !important;
+}
+
+body {
+    width: 100vw ;
+    height: 100vh ;
+}

@@ -11,6 +11,7 @@
 
     <!-- Link to Bulma -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css" integrity="sha256-D9M5yrVDqFlla7nlELDaYZIpXfFWDytQtiV+TaH6F1I=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"></script>
 
     <!-- Link to My CSS Sheet-->
     <link rel="stylesheet" type="text/css" href="../styles/provider.css">
@@ -64,7 +65,7 @@
 
     <div class="modal">
         <div class="modal-content">
-            <div id="patChart"></div>
+            <canvas id="patChart"></canvas>
         </div>
         <div class="modal-card-foot">
             <button class="button is-cancel">Back</button>
@@ -104,7 +105,6 @@
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"></script>
 <script src="../scripts/providerView.js" type="module"></script>
 <script src="../scripts/api.js"></script>
 <script

@@ -81,6 +81,7 @@ export const loadStats = function(id) {
 
 export const loadView = function() {
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    var height = (window.innerHeight > 0) ? window.innerHeight :screen.height;
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
     
@@ -94,6 +95,8 @@ export const loadView = function() {
                 `);
             });
         });
+        $(".modal-content #patChart").css("width", width/2);
+        $(".modal-content #patChart").css("height", height/2);
         $(`#root .datePanel .select select`).on("change", function(opt) {
             console.log(opt)
             // load patient statistics

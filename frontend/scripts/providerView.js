@@ -1,4 +1,4 @@
-import Chart from './Chart.min.js';
+import Chart from '../node_modules/chart.js/dist/Chart.js';
 
 export const isToday = function(date) {
     let todaysDate = new Date();

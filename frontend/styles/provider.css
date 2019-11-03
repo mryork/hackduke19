@@ -47,6 +47,14 @@ body {
     display: none;
 }
 
+.datePanel .select {
+    width: 100%;
+}
+
+.datePanel select {
+    width: 100%;
+}
+
 .datePanel .dateObj {
     /* border: dashed 1px red; */
     background-color: rgb(219, 233, 238);

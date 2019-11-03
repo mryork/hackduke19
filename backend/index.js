@@ -27,7 +27,7 @@ var patient = mongoose.model('Patient', new mongoose.Schema({
     password: String,
     phone: String,
     providers: [{type: mongoose.Schema.Types.ObjectId, ref: 'Provider'}],
-    logs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Log'}]
+    logs: [Object]
 }));
 
 var provider = mongoose.model('Provider', new mongoose.Schema({
@@ -36,12 +36,6 @@ var provider = mongoose.model('Provider', new mongoose.Schema({
     password: String,
     phone: String,
     office: String
-}));
-
-var log = mongoose.model('Log', new mongoose.Schema({
-    patient: [{type: mongoose.Schema.Types.ObjectId, ref: 'Patient'}],
-    date: String,
-    object: Object
 }));
 
 // Authentication API Endpoints
@@ -112,6 +106,7 @@ app.post("/api/auth/register", (req,res) => {
         } else {
             var newUser = {};
             newUser.name = body.name;
+            newUser.phone = body.phone;
             newUser.email = body.email;
             generateSalt(body.password).then((hash) => {
                 newUser.password = hash;
@@ -270,6 +265,54 @@ app.get("/api/patient/getLogs", (req,res) => {
         });
     }
 })
+app.post("/api/patient/updateLog", (req,res) => {
+    const body = req.body;
+
+    jwt.verify(body.token, privateKey, function(err, decoded) {
+        if(err) {
+            res.status(400);
+            res.send();
+        } else {
+            patient.findOne({email: decoded.email}).then((pat) => {
+                let patLogs = pat.logs;
+                var today = null;
+
+                console.log(patLogs);
+
+                for(var i = 0; i < patLogs.length; i -= -1) {
+                    if(isToday(new Date(JSON.parse(patLogs[i]).date))) {
+                        console.log("Found")
+                        today = i;
+                    }
+                }
+
+                if(today !== null) {
+                    console.log("updating")
+                    patLogs[today] = body.log;
+                    console.log(patLogs)
+                } else {
+                    patLogs.push(body.log);
+                }
+
+                pat.markModified("logs");
+
+                pat.save().then((val) => {
+                    console.log(val);
+                    res.status(200);
+                    res.send();
+                });
+            })
+        }
+    });
+})
+
+function isToday(date) {
+    let today = new Date();
+    console.log(today + " and " + date)
+    return (date.getDate() == today.getDate() &&
+        date.getMonth() == today.getMonth() &&
+        date.getFullYear() == today.getFullYear());
+}
 
 mongoose.connect(process.env.MONGO_HOST, { useNewUrlParser: true, useUnifiedTopology: true})
 .then(() => {

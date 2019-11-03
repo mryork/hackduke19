@@ -129,7 +129,7 @@ function register(event) {
         }
     }).then((res) => {
         if(res.error) { return res } else {
-            return res.json();
+            window.location.replace("http://carelog.online/login.html")
         }
         
     }).then((res) => {

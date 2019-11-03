@@ -1,5 +1,5 @@
 import * as Chart from '/node_modules/chart.js/dist/Chart.js';
- 
+
 export const isToday = function(date) {
     let todaysDate = new Date();
     return (date.getDate() == todaysDate.getDate() &&
@@ -100,10 +100,10 @@ export const loadView = function() {
         $(`#root .datePanel .select select`).on("change", function(opt) {
             console.log(opt)
             // load patient statistics
-            $("#root .navbar #patStats").removeClass("is-light");
-            $("#root .navbar #patStats").addClass("is-cancel");
-            $("#root .navbar #patStats").unbind();
-            $("#root .navbar #patStats").on("click", function() {
+            $(".navbar #patStats").removeClass("is-light");
+            $(".navbar #patStats").addClass("is-cancel");
+            $(".navbar #patStats").unbind();
+            $(".navbar #patStats").on("click", function() {
                 loadStats(opt.target.value);
                 $(".modal").addClass("is-active");
                 $(".modal-card-foot .button").on("click", function() {

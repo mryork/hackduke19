@@ -7,6 +7,22 @@ export const isToday = function(date) {
             date.getFullYear() == todaysDate.getFullYear()) ? date : false;
 }
 
+export const updateScrollArrows = function(maxScroll) {
+    console.log(Math.abs($("#root .datePanel").scrollTop() - maxScroll) < 5)
+    if ($("#root .datePanel").scrollTop() != 0) {
+        $("#root .datePanel .scrollUpArrow").addClass("active");
+        $("#root .datePanel .scrollUpArrow").css("opacity", `${$("#root .datePanel").scrollTop()/maxScroll}`);
+    } else {
+        $("#root .datePanel .scrollUpArrow").removeClass("active");
+    }
+    if (Math.abs($("#root .datePanel").scrollTop() - maxScroll) < 5) {
+        $("#root .datePanel .scrollDownArrow").removeClass("active");
+    } else {
+        $("#root .datePanel .scrollDownArrow").addClass("active");
+        $("#root .datePanel .scrollDownArrow").css("opacity", `${(maxScroll-$("#root .datePanel").scrollTop())/maxScroll}`);
+    }
+}
+
 export const renderLog = function(log) {
     $("#root .logView").replaceWith(`
     <div class="logView column is-four-fifths-desktop is-two-thirds-mobile is-mobile">
@@ -25,7 +41,7 @@ export const renderLog = function(log) {
             <h1 class="subtitle is-3">Description</h1>
             <textarea class="textarea has-fixed-size" rows="4" cols="50">${log.object.message}</textarea>
         </div>
-        <button class="button is-success">Save</button>
+        <button class="button">Save</button>
     </div>
     `);
 
@@ -49,7 +65,7 @@ export const renderLog = function(log) {
         });
     }
 
-    saveLog(log);
+    // saveLog(log);
 }
 
 export const loadView = function() {
@@ -92,19 +108,11 @@ export const loadView = function() {
         $(window).resize(function() {
             $("#root .datePanel .scrollUpArrow").css("left", $("#root .datePanel").width()/2-16);
             $("#root .datePanel .scrollDownArrow").css("left", $("#root .datePanel").width()/2-16);
-        })
+        });
+        let maxScroll = $("#root .datePanel .dateObj").height()*(y.length)-$(window).height()*.9;
+        updateScrollArrows(maxScroll);
         $("#root .datePanel").on("scroll", function() {
-            console.log(Math.abs($("#root .datePanel").scrollTop() - ($("#root .datePanel .dateObj").height()*(y.length)-$(window).height()*.9)) < 5)
-            if ($("#root .datePanel").scrollTop() != 0) {
-                $("#root .datePanel .scrollUpArrow").addClass("active");
-            } else {
-                $("#root .datePanel .scrollUpArrow").removeClass("active");
-            }
-            if (Math.abs($("#root .datePanel").scrollTop() - ($("#root .datePanel .dateObj").height()*(y.length)-$(window).height()*.9)) < 5) {
-                $("#root .datePanel .scrollDownArrow").removeClass("active");
-            } else {
-                $("#root .datePanel .scrollDownArrow").addClass("active");
-            }
+            updateScrollArrows(maxScroll);
         });
     });
 }

@@ -10,18 +10,39 @@ html {
     background-color: blue;
 }
 
-@media screen and (min-width: 1024px) {
-    .navbar.is-spaced {
-        padding: 1rem 2rem;
-    }
-}
-
 body {
     height: 100vh;
 }
 
 .navbar {
     height: 10%;
+    padding: 2%;
+}
+
+.navbar-brand {
+    height: 98%;
+    min-height: 0;
+    margin: auto 0;
+}
+
+.navbar-item img {
+    padding: auto;
+    height: fit-content;
+}
+
+.navbar-item .button {
+    background-color: rgb(52, 126, 166);
+    color: rgb(219, 233, 238);
+}
+
+.navbar-item .button:hover {
+    background-color: rgb(22, 116, 156);
+    color: rgb(234, 248, 253);
+}
+
+.navbar-item .button:active {
+    background-color: rgb(2, 86, 116);
+    color: rgb(234, 248, 253);
 }
 
 #root {
@@ -34,7 +55,7 @@ body {
 .datePanel {
     overflow-y: scroll;
     padding: 0;
-    border: solid 1px black;
+    /* border: solid 1px black; */
 }
 
 .datePanel::-webkit-scrollbar {
@@ -43,7 +64,7 @@ body {
 
 .datePanel .dateObj {
     /* border: dashed 1px red; */
-    background-color: whitesmoke;
+    background-color: rgb(219, 233, 238);
     text-align: center;
 }
 
@@ -53,15 +74,18 @@ body {
 }
 
 .datePanel .dateObj:hover {
-    background-color: gray;
+    background-color: rgb(79, 109, 122);
+    color: rgb(219, 233, 238);
 }
 
 .datePanel .activeDate {
-    background-color: wheat;
+    background-color: rgb(22, 96, 136);
+    color: rgb(219, 233, 238);
 }
 
 .datePanel .activeDate:hover {
-    background-color: wheat;
+    background-color: rgb(22, 96, 136);
+    color: rgb(219, 233, 238);
 }
 
 .datePanel .scrollUpArrow.active {
@@ -71,7 +95,8 @@ body {
     height: 0;
     border-left: 16px solid transparent;
     border-right: 16px solid transparent;
-    border-bottom: 20px solid rgba(255, 0, 0, 0.5);
+    border-bottom: 20px solid rgba(74, 111, 165, 0.7);
+    pointer-events: none;
 }
 
 .datePanel .scrollDownArrow.active {
@@ -80,11 +105,13 @@ body {
     height: 0;
     border-left: 16px solid transparent;
     border-right: 16px solid transparent;
-    border-top: 20px solid rgba(255, 0, 0, 0.5);
+    border-top: 20px solid rgba(74, 111, 165, 0.7);
+    pointer-events: none;
 }
 
 .logView {
-    border: solid 1px black;
+    /* border: solid 1px black; */
+    background-color: rgb(250, 250, 252);
     padding: 1em;
 }
 
@@ -94,13 +121,34 @@ body {
 }
 
 .logView .logMoodSelector img {
-    width: 8vw;
+    width: 5vw;
 }
 
 .logView .textarea {
     margin: .5em 0;
 }
 
-/* .logView .logMoodSelector .active {
-    border: solid 1px red;
-} */
+.logView .textarea:focus {
+    background-color: rgb(234, 248, 253);
+    border-color: rgb(22, 96, 136);
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.logView .button {
+    background-color: rgb(52, 126, 166);
+    color: rgb(219, 233, 238);
+}
+
+.logView .button:hover {
+    background-color: rgb(22, 116, 156);
+    color: rgb(234, 248, 253);
+}
+
+.logView .button:active {
+    background-color: rgb(2, 86, 116);
+    color: rgb(234, 248, 253);
+}

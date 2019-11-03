@@ -58,9 +58,9 @@ export const loadStats = function(id) {
     var sentimentData = [];
     getLogs(id).then(logs => {
         logs.forEach(log => {
-            moodData.push(log.object.mood);
+            moodData.push(Number(log.object.mood));
             analyzeSentiment(log.object.message).then(sent => {
-                sentimentData.push(sent.sentiment);
+                sentimentData.push(Math.floor((sent.sentiment+2)*5/3));
             });
         });
         

@@ -1,8 +1,7 @@
 
 .bg-pastel-yellow {
-    background-color: #DBE9EE ;
+    background-color: #F7F1EB ;
 }
-
 
 .dark-yellow {
     color: #947600 !important;
@@ -25,16 +24,5 @@ html {
     margin-top: 40px; 
 }
 
-.sign-up:hover {
-    background-color: #C0D6DF !important;
-}
-
-
-
-@media screen and (min-width: 600px) {
-    .logo{
-        width: 25%;
-    }
-}
 
 

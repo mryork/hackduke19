@@ -49,7 +49,7 @@ export const renderLog = function(log) {
     $(`#root .logMoodSelector #${log.object.mood}`).attr("src", `/imgs/mood${log.object.mood}_active.png`);
     if (!isToday(new Date(log.date))) {
         $("#root .logDesc .textarea").attr("readonly", "readonly");
-        $("#root .logView .button").addClass("is-light");
+        $("#root .logView .button").addClass("is-light"); //TODO is-light css
         $("#root .logView .button").html("Saved");
     } else {
         $("#root .logMoodSelector .mood").on("click", function(evt) {
@@ -70,10 +70,43 @@ export const renderLog = function(log) {
     // saveLog(log);
 }
 
+export const renderProviderForm = function() {
+    $(".navbar .newProvider").replaceWith(`
+    <div class="newProviderForm">
+        <input class="input" type="text" placeholder="Provider Email">
+        <button class="button is-submit">Submit</button>
+        <button class="button is-cancel">Cancel</button>
+    </div>
+    `);
+    $("#root .newProviderForm .is-submit").on("click", function() {
+        addProvider($("#root .newProviderForm .input").html());
+        $("#root .newProviderForm .is-submit").replaceWith(`
+        <button class="button is-cancel newProvider">New Provider</button>
+        `);
+        $(".navbar .newProvider").on("click", function() {
+            renderProviderForm();
+        });
+    });
+    $("#root .newProviderForm .is-cancel").on("click", function() {
+        $("#root .newProviderForm .is-cancel").replaceWith(`
+        <button class="button is-cancel newProvider">New Provider</button>
+        `);
+        $(".navbar .newProvider").on("click", function() {
+            renderProviderForm();
+        });
+    });
+}
+
 export const loadView = function() {
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
+    
+    // handle new provider
+    $(".navbar .newProvider").on("click", function() {
+        renderProviderForm();
+    });
+    
     // render log dates listview
     getLogs().then(y => {
         let today = false;

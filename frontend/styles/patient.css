@@ -30,6 +30,17 @@ body {
     color: rgb(234, 248, 253);
 }
 
+.navbar-item .newProvider {
+    background-color: white;
+    color: rgb(22, 116, 156);
+}
+
+.navbar-item .newProvider:hover {
+    background-color: rgb(243,243,243);
+    
+    color: rgb(22, 116, 156);
+}
+
 #root {
     margin: 0;
     display: flex;

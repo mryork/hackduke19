@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const bcrypt = require('bcrypt')
+const cors = require('cors');
 
 // Instantiate our Express app object
 const app = express()
@@ -16,6 +17,7 @@ const saltRounds = 10;
 
 // Grab our middlewares
 app.use(cookieParser())
+app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('../frontend'))

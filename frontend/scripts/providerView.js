@@ -60,10 +60,10 @@ export const loadView = function() {
     getPatients().then(ids => {
         ids = ids.patients;
         ids.forEach(id => {
-            $("#root .datePanel .dropdown-content").append(`
-            <a class="dropdown-item" id="${id}">${getPatientInfo(id)}</a>
+            $("#root .datePanel .select select").append(`
+            <option id="${id}">${getPatientInfo(id)}</option>
             `);
-            $(`#root .datePanel .dropdown-content #${id}`).on("click", function() {
+            $(`#root .datePanel .select #${id}`).on("click", function() {
                 // render log dates listview
                 getPatientLogs(id).then(y => {
                     let today = false;

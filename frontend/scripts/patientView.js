@@ -70,14 +70,14 @@ export const renderLog = function(log) {
 
 export const renderProviderForm = function() {
     $(".navbar .newProvider").replaceWith(`
-    <div class="newProviderForm"><input class="input" type="text" placeholder="Provider Email" name="email">
+    <div class="newProviderForm"><input class="input" type="text" placeholder="Provider Email" name="email" id="submitNewProvider">
         <button class="button is-rounded is-submit">Submit</button>
         <button class="button is-rounded is-cancel">Cancel</button>
     </div>
     `);
     $(".navbar .newProviderForm .is-submit").on("click", function(e) {
         e.preventDefault();
-        addProvider($(".navbar .newProviderForm .input").html().value);
+        addProvider($("#submitNewProvider")[0].value);
         $(".navbar .newProviderForm").replaceWith(`
         <button class="button is-medium is-rounded is-cancel newProvider"><strong>New Provider</strong></button>
         `);

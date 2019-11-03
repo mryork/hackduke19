@@ -34,11 +34,11 @@ function login(event) {
     });
 }
 
-function addProvider(email) {
+function addProvider(param) {
     fetch('http://carelog.online/api/patient/associate', {
         method: 'post',
         body: JSON.stringify({
-            email: email,
+            email: param,
             token: window.localStorage.getItem('token')
         }),
         headers: {

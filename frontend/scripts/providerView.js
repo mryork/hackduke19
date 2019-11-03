@@ -59,9 +59,10 @@ async function getSentiments(logs) {
     return new Promise((res, rej) => {
         var sentimentData = [];
 
-        for (let i = 0; i < logs.length; i++) {
+        for (let i = 0; i < logs.length;) {
             analyzeSentiment(logs[i].object.message).then(sent => {
                 sentimentData.push(Math.floor((Number(sent.sentiment)+2)*5/3));
+                i++;
             });
         }
 

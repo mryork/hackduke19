@@ -66,14 +66,16 @@ export const loadStats = function(id) {
         });
         var myChart = new Chart(ctx, {
             type: 'line',
-            labels: [ 'Red', 'Blue' ],
-            datasets: [{
-                label: 'Patient Mood',
-                data: moodData
-            }, {
-                label: 'Patient Sentiment',
-                data: sentimentData
-            }]
+            data: {
+                labels: [ 'Red', 'Blue' ],
+                datasets: [{
+                    label: 'Patient Mood',
+                    data: moodData
+                }, {
+                    label: 'Patient Sentiment',
+                    data: sentimentData
+                }]
+            }
         });
         console.log(moodData);
         console.log(sentimentData);

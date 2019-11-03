@@ -121,6 +121,7 @@ body {
 .button.is-submit {
     background-color: rgb(52, 126, 166);
     color: rgb(219, 233, 238);
+    margin-left: 0.5em;
 }
 
 .button.is-submit:hover {

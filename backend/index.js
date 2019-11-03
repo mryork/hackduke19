@@ -210,6 +210,7 @@ app.post("/api/patient/dissociate", (req,res) => {
 })
 
 async function getSentiment(text) {
+    console.log(text);
     // Imports the Google Cloud client library
     const language = require('@google-cloud/language');
     const projectId = 'sage-mind-255701'

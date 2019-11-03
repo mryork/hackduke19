@@ -27,6 +27,7 @@ function login(event) {
             const token = res.token;
     
             window.localStorage.setItem("token", token);
+            window.location.replace("http://carelog.online/" + type);
         }
     });
 }

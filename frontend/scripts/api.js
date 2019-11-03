@@ -65,7 +65,8 @@ function getPatientInfo(id) {
     }).then((res) => {
         return res.json();
     }).then((res) => {
-        resolve(res);
+        console.log(res);
+        resolve(res.patients);
     });
     });
 }

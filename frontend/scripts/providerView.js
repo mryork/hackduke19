@@ -58,6 +58,7 @@ export const loadView = function() {
         "July", "August", "September", "October", "November", "December"];
     
     getPatients().then(ids => {
+        ids = ids.patients;
         ids.forEach(id => {
             $("#root .datePanel .dropdown-content").append(`
             <a class="dropdown-item" id="${id}">${getPatientInfo(id)}</a>

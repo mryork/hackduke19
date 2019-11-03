@@ -236,7 +236,7 @@ app.post("/api/provider/analyzeSentiment", (req,res) => {
     const body = req.body;
     const text = body.text;
 
-    analyzeSentiment(text).then((returned) => {
+    getSentiment(text).then((returned) => {
         res.json({sentiment: returned});
         res.status(200);
         res.send();

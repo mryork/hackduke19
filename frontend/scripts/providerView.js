@@ -55,6 +55,14 @@ export const renderLog = function(log) {
     // saveLog(log);
 }
 
+async function getSentiments(logs) {
+    var sentimentData = [];
+    analyzeSentiment(log.object.message).then(sent => {
+        sentimentData.push(Math.floor((Number(sent.sentiment)+2)*5/3));
+    });
+    return sentimentData;
+}
+
 export const loadStats = function(id) {
     var ctx = $(".modal #patChart");
     var moodData = [];
@@ -62,61 +70,54 @@ export const loadStats = function(id) {
     var dates = [];
     
     getPatientLogs(id).then(logs => {
-        logs.logs.forEach(log => {
+        logs = logs.logs;
+        logs.forEach(log => {
             moodData.push(Number(log.object.mood));
             var date = new Date(log.object.mood);
             dates.push(monthNames[date.getMonth()].slice(0,3) + ' ' + date.getDate());
-            analyzeSentiment(log.object.message).then(sent => {
-                sentimentData.push(Math.floor((Number(sent.sentiment)+2)*5/3));
-                console.log(sentimentData);
+        });
+        getSentiments(logs).then(sentiments => {
+            console.log(moodData);
+            console.log(sentiments);
+            console.log(dates)
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: 'Patient Mood',
+                        backgroundColor: 'rgba(242, 48, 51, .5)',
+                        borderColor: 'rgba(242, 48, 51, .5)',
+                        data: moodData,
+                        fill: false
+                    }, {
+                        label: 'Patient Sentiment',
+                        backgroundColor: 'rgba(48, 54, 242, .5)',
+                        borderColor: 'rgba(48, 54, 242, .5)',
+                        data: sentiments,
+                        fill: false
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Time'
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Mood/Sentiment'
+                            }
+                        }]
+                    }
+                }
             });
         });
-        console.log(moodData);
-        console.log(sentimentData);
-        console.log(dates)
-        var newSentiment = [];
-        sentimentData.forEach(i => {
-            newSentiment.push(i);
-        });
-        console.log(newSentiment)
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: dates,
-                datasets: [{
-                    label: 'Patient Mood',
-                    backgroundColor: 'rgba(242, 48, 51, .5)',
-                    borderColor: 'rgba(242, 48, 51, .5)',
-                    data: moodData,
-                    fill: false
-                }, {
-                    label: 'Patient Sentiment',
-                    backgroundColor: 'rgba(48, 54, 242, .5)',
-                    borderColor: 'rgba(48, 54, 242, .5)',
-                    data: newSentiment,
-                    fill: false
-                }]
-            },
-            options: {
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Time'
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Mood/Sentiment'
-                        }
-                    }]
-                }
-            }
-        });
-        myChart.update();
     });
 }
 

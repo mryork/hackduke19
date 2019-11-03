@@ -128,8 +128,8 @@ export const loadView = function() {
                 `);
             });
         });
-        $(".modal-content #patChart").css("width", width/2);
-        $(".modal-content #patChart").css("height", height/2);
+        $(".modal-content #patChart").css("width", Math.floor(width/2));
+        $(".modal-content #patChart").css("height", Math.floor(height/2));
         $(`#root .datePanel .select select`).on("change", function(opt) {
             console.log(opt.target.value)
             // load patient statistics

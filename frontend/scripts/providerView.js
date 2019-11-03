@@ -60,9 +60,10 @@ export const loadView = function() {
     getPatients().then(ids => {
         ids = ids.patients;
         ids.forEach(id => {
-            getPatientInfo(id).then(name => {
+            getPatientInfo(id).then(obj => {
+                console.log("HI" + obj)
                 $("#root .datePanel .select select").append(`
-                <option id="${id}">${name}</option>
+                <option id="${id}">${obj.name}</option>
                 `);
                 $(`#root .datePanel .select #${id}`).on("click", function() {
                     // render log dates listview

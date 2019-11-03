@@ -52,8 +52,7 @@ function addProvider(email) {
 
 function getPatientInfo(id) {
     return new Promise((resolve, rej) =>  {
-        let logs = [];
-        fetch('http://carelog.online/api/patient/getLogs', {
+        fetch('http://carelog.online/api/patient/getPatientInfo', {
         method: 'post',
         body: JSON.stringify({
             token: localStorage.token,
@@ -63,11 +62,9 @@ function getPatientInfo(id) {
             'Content-Type': 'application/json'
         }
     }).then((res) => {
-        return res.json();
-    }).then((res) => {
-        console.log(res);
-        resolve(res.patients);
-    });
+        res.json().then((json) => 
+        resolve(json))
+    })
     });
 }
 

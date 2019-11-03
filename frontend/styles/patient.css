@@ -64,8 +64,17 @@ body {
     padding: 1em;
 }
 
+.logView .subtitle {
+    margin: 0;
+    margin-bottom: .2em;
+}
+
 .logView .logMoodSelector img {
-    width: 10vw;
+    width: 8vw;
+}
+
+.logView .textarea {
+    margin: .5em 0;
 }
 
 /* .logView .logMoodSelector .active {

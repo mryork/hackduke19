@@ -70,6 +70,8 @@ export const loadStats = function(id) {
                 sentimentData.push(Math.floor((sent.sentiment+2)*5/3));
             });
         });
+        console.log(moodData);
+        console.log(sentimentData)
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -84,7 +86,7 @@ export const loadStats = function(id) {
                     label: 'Patient Sentiment',
                     backgroundColor: 'rgba(48, 54, 242, .5)',
                     borderColor: 'rgba(48, 54, 242, .5)',
-                    data: sentimentData,
+                    data: Array(sentimentData),
                     fill: false
                 }]
             },
@@ -115,9 +117,7 @@ export const loadStats = function(id) {
                     }]
                 }
             }
-        });
-        console.log(moodData);
-        console.log(sentimentData);
+        });;
     });
 }
 

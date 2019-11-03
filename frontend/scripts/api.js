@@ -1,4 +1,5 @@
 document.getElementById("login").addEventListener("submit", login);
+document.getElementById("logout").addEventListener("click", logout);
 
 function login(event) {
     event.preventDefault();

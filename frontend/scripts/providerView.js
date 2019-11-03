@@ -1,4 +1,7 @@
 
+const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+
 export const isToday = function(date) {
     let todaysDate = new Date();
     return (date.getDate() == todaysDate.getDate() &&
@@ -56,10 +59,13 @@ export const loadStats = function(id) {
     var ctx = $(".modal #patChart");
     var moodData = [];
     var sentimentData = [];
+    var dates = [];
     
     getPatientLogs(id).then(logs => {
         logs.logs.forEach(log => {
             moodData.push(Number(log.object.mood));
+            var date = new Date(log.object.mood);
+            dates.push(monthNames[date.getMonth()].slice(0,3) + ' ' + date.getDate());
             analyzeSentiment(log.object.message).then(sent => {
                 sentimentData.push(Math.floor((sent.sentiment+2)*5/3));
             });
@@ -67,14 +73,46 @@ export const loadStats = function(id) {
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: [ 'Red', 'Blue' ],
+                labels: dates,
                 datasets: [{
                     label: 'Patient Mood',
-                    data: moodData
+                    backgroundColor: window.chartColors.red,
+                    borderColor: window.chartColors.red,
+                    data: moodData,
+                    fill: false
                 }, {
                     label: 'Patient Sentiment',
+                    backgroundColor: window.chartColors.blue,
+                    borderColor: window.chartColors.blue,
+                    data: moodData,
                     data: sentimentData
                 }]
+            },
+            options: {
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Mood/Sentiment'
+                        }
+                    }]
+                }
             }
         });
         console.log(moodData);
@@ -85,8 +123,6 @@ export const loadStats = function(id) {
 export const loadView = function() {
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     var height = (window.innerHeight > 0) ? window.innerHeight :screen.height;
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"];
     
     getPatients().then(ids => {
         ids = ids.patients;

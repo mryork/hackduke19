@@ -109,7 +109,8 @@ export const loadStats = function(id) {
                     }]
                 }
             }
-        });;
+        });
+        myChart.update();
     });
 }
 

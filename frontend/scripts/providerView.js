@@ -73,6 +73,10 @@ export const loadStats = function(id) {
         console.log(moodData);
         console.log(sentimentData);
         console.log(dates)
+        var newSentiment = [];
+        for (var i = 0; i < sentimentData.length; i++) {
+            newSentiment[i] = sentimentData[i];
+        }
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -87,7 +91,7 @@ export const loadStats = function(id) {
                     label: 'Patient Sentiment',
                     backgroundColor: 'rgba(48, 54, 242, .5)',
                     borderColor: 'rgba(48, 54, 242, .5)',
-                    data: sentimentData.slice(0),
+                    data: newSentiment,
                     fill: false
                 }]
             },

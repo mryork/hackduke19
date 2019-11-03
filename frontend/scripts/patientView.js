@@ -23,8 +23,10 @@ export const updateScrollArrows = function(maxScroll) {
 }
 
 export const renderLog = function(log) {
+    var height = (window.innerHeight > 0) ? window.innerHeight :screen.height;
+    console.log(height/100);
     $("#root .logView").replaceWith(`
-    <div class="logView column is-four-fifths-desktop is-two-thirds-mobile is-mobile">
+    <div class="logView column  is-four-fifths-desktop is-two-thirds-mobile is-mobile">
         <div class="logMood">
             <h1 class="title is-3">Mood</h1>
             <h2 class="subtitle is-5">How are you feeling today?</h2>
@@ -38,7 +40,7 @@ export const renderLog = function(log) {
         </div>
         <div class="logDesc">
             <h1 class="subtitle is-3">Description</h1>
-            <textarea class="textarea has-fixed-size" rows="4" cols="50">${log.object.message}</textarea>
+            <textarea class="textarea message" rows="${height/100}" cols="50">${log.object.message}</textarea>
         </div>
         <button class="button is-medium is-rounded is-submit">Save</button>
     </div>

@@ -15,6 +15,7 @@ body {
     height: 10%;
 }
 
+
 .navbar .newProviderForm {
     display: flex;
     flex-direction: row;
@@ -36,6 +37,7 @@ body {
     overflow-y: scroll;
     padding: 0;
     /* border: solid 1px black; */
+    height: 90vh;
 }
 
 .datePanel::-webkit-scrollbar {
@@ -93,6 +95,7 @@ body {
     /* border: solid 1px black; */
     background-color: rgb(250, 250, 252);
     padding: 1em;
+    height: 90vh;
 }
 
 .logView .subtitle {
@@ -169,3 +172,17 @@ body {
     color: rgb(42, 116, 156);
     border: rgb(42, 116, 156);
 }
+
+
+
+.mood{
+    min-width: 100px;
+    height: auto;
+}
+
+@media only screen and (max-width: 1023px) {
+   .mood {
+       min-width: 50px;
+   }
+  }
+

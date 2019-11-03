@@ -1,3 +1,21 @@
+function login(event) {
+    const username = event.target.
+    fetch('http://clickin.space/api/', {
+        method: 'post'
+    })
+}
+
+function realgetLogs() {
+    fetch('http://clickin.space/api/', {
+        method: 'post',
+        body: JSON.stringify(innards)
+    }).then((res) => {
+
+    }).catch(() => {
+        // No.
+    })
+}
+
 function getLogs() {
     return new Promise((res, rej) => {
         setTimeout(() => {

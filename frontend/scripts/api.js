@@ -142,6 +142,25 @@ function register(event) {
     });
 }
 
+function analyzeSentiment(text) {
+    return new Promise((resolve, rej) =>  {
+        let logs = [];
+        fetch('http://carelog.online/api/provider/analyzeSentiment', {
+        method: 'post',
+        body: JSON.stringify({
+            text: text
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((res) => {
+        return res.json();
+    }).then((res) => {
+        resolve(res);
+    });
+    });
+}
+
 function emptyLog() {
     return new Promise((resolve, rej) =>  {
         var empty = {

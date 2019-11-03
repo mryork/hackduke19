@@ -58,16 +58,10 @@ export const renderLog = function(log) {
 async function getSentiments(logs) {
     return new Promise((res, rej) => {
         var sentimentData = [];
-        let sents = true;
-        for (let i = 0; i < logs.length;) {
-            if (sents) {
-                sents = false;
-                analyzeSentiment(logs[i].object.message).then(sent => {
-                    sentimentData.push(Math.floor((Number(sent.sentiment)+2)*5/3));
-                    sents = true;
-                    i++;
-                });
-            }
+        for (let i = 0; i < logs.length; i++) {
+            analyzeSentiment(logs[i].object.message).then(sent => {
+                sentimentData.push(Math.floor((Number(sent.sentiment)+2)*5/3));
+            });
         }
 
         setTimeout(() => {res(sentimentData)}, 100);

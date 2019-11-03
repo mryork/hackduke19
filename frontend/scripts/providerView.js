@@ -65,7 +65,7 @@ export const loadStats = function(id) {
         });
         
     });
-    var myChart = new chart(ctx, {
+    var myChart = new Chart(ctx, {
         type: 'line',
         labels: [ 'Red', 'Blue' ],
         datasets: [{

@@ -236,7 +236,6 @@ async function getSentiment(text) {
 
 app.post("/api/provider/analyzeSentiment", (req,res) => {
     const body = req.body;
-    console.log(body);
     const text = body.text;
 
     getSentiment(text).then((returned) => {

@@ -76,14 +76,14 @@ export const loadStats = function(id) {
                 labels: dates,
                 datasets: [{
                     label: 'Patient Mood',
-                    backgroundColor: window.chartColors.red,
-                    borderColor: window.chartColors.red,
+                    backgroundColor: 'rgba(10, 240, 240, .5)',
+                    borderColor: 'rgba(10, 240, 240, .5)',
                     data: moodData,
                     fill: false
                 }, {
                     label: 'Patient Sentiment',
-                    backgroundColor: window.chartColors.blue,
-                    borderColor: window.chartColors.blue,
+                    backgroundColor: 'rgba(240, 240, 10, .5)',
+                    borderColor: 'rgba(240, 240, 10, .5)',
                     data: moodData,
                     data: sentimentData
                 }]

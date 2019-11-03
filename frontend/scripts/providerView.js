@@ -59,15 +59,14 @@ async function getSentiments(logs) {
     return new Promise((res, rej) => {
         var sentimentData = [];
 
-        let sents = 0;
+        let sents = true;
         for (let i = 0; i < logs.length; i++) {
-            if (sents == i) {
+            if (sents) {
+                sents = false;
                 analyzeSentiment(logs[i].object.message).then(sent => {
                     sentimentData.push(Math.floor((Number(sent.sentiment)+2)*5/3));
-                    sents++;
+                    sents = true;
                 });
-            } else {
-                i = sents-2;
             }
         }
 

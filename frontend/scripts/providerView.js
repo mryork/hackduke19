@@ -56,11 +56,8 @@ export const loadStats = function(id) {
     var ctx = $(".modal #patChart");
     var moodData = [];
     var sentimentData = [];
-    getLogs(id).then(logs => {
-        logs.forEach(log => {
-            moodData.push(Number(log.object.mood);
+    
     getPatientLogs(id).then(logs => {
-	console.log(logs);
         logs.logs.forEach(log => {
             moodData.push(Number(log.object.mood));
             analyzeSentiment(log.object.message).then(sent => {
@@ -68,18 +65,18 @@ export const loadStats = function(id) {
             });
         });
         var myChart = new Chart(ctx, {
-        type: 'line',
-        labels: [ 'Red', 'Blue' ],
-        datasets: [{
-            label: 'Patient Mood',
-            data: moodData
-        }, {
-            label: 'Patient Sentiment',
-            data: sentimentData
-        }]
-    });
-console.log(moodData);
-console.log(sentimentData);
+            type: 'line',
+            labels: [ 'Red', 'Blue' ],
+            datasets: [{
+                label: 'Patient Mood',
+                data: moodData
+            }, {
+                label: 'Patient Sentiment',
+                data: sentimentData
+            }]
+        });
+        console.log(moodData);
+        console.log(sentimentData);
     });
 }
 

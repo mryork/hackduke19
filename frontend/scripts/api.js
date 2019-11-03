@@ -109,6 +109,11 @@ function emptyLog() {
     });
 }
 
+function logout() {
+    window.localStorage.removeItem("token");
+    window.location.replace("http://carelog.online/login.html")
+}
+
 function saveLog(log) {
     return new Promise((resolve, rej) =>  {
     fetch('http://carelog.online/api/patient/updateLog', {

@@ -8,7 +8,7 @@ function login(event) {
     const username = event.target[1].value;
     const password = event.target[2].value;
 
-    fetch('http://localhost/api/auth/login', {
+    fetch('http://carelog.online/api/auth/login', {
         method: 'post',
         body: JSON.stringify({
             type: type,
@@ -32,6 +32,25 @@ function login(event) {
     });
 }
 
+function addProvider(event) {
+    event.preventDefault();
+
+    const email = event.target[0].value;
+
+    fetch('http://carelog.online/api/patient/associate', {
+        method: 'post',
+        body: JSON.stringify({
+            email: email,
+            token: window.localStorage.getItem('token')
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((response) => {
+        window.location.replace('http://carelog.online/patient')
+    })
+}
+
 function register(event) {
     event.preventDefault();
     
@@ -41,7 +60,7 @@ function register(event) {
     const email = event.target[3].value;
     const password = event.target[4].value;
 
-    fetch('http://localhost/api/auth/register', {
+    fetch('http://carelog.online/api/auth/register', {
         method: 'post',
         body: JSON.stringify({
             type: type,
@@ -59,7 +78,7 @@ function register(event) {
         if(res.error) {
             document.getElementById("register-error").innerHTML = res.error;
         } else {
-            window.location.replace("http://localhost/login.html");
+            window.location.replace("http://carelog.online/login.html");
         }
     });
 }
@@ -73,7 +92,7 @@ function emptyLog() {
                 message: ""
             }
         };
-    fetch('http://localhost/api/patient/updateLog', {
+    fetch('http://carelog.online/api/patient/updateLog', {
         method: 'post',
         body: JSON.stringify({
             token: localStorage.token,
@@ -90,7 +109,7 @@ function emptyLog() {
 
 function saveLog(log) {
     return new Promise((resolve, rej) =>  {
-    fetch('http://localhost/api/patient/updateLog', {
+    fetch('http://carelog.online/api/patient/updateLog', {
         method: 'post',
         body: JSON.stringify({
             token: localStorage.token,
@@ -108,7 +127,7 @@ function saveLog(log) {
 function getLogs() {
     return new Promise((resolve, rej) =>  {
         let logs = [];
-        fetch('http://localhost/api/patient/getLogs', {
+        fetch('http://carelog.online/api/patient/getLogs', {
         method: 'post',
         body: JSON.stringify({
             token: localStorage.token

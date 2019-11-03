@@ -45,7 +45,7 @@ var provider = mongoose.model('Provider', new mongoose.Schema({
 app.post("/api/auth/login", (req,res) => {
     const body = req.body;
     var userType;
-    
+
     if(body.type == "patient") {
         userType = patient;
     } else if (body.type == "provider") {
@@ -230,8 +230,10 @@ app.get("/api/provider/getPatients", (req,res) => {
     });
 })
 
-app.get("/api/patient/getLogs", (req,res) => {
+app.post("/api/patient/getLogs", (req,res) => {
     const body = req.body;
+
+    console.log(body);
 
     if(body.id) {
         jwt.verify(body.token, privateKey, function(err, decoded) {
@@ -242,6 +244,8 @@ app.get("/api/patient/getLogs", (req,res) => {
                 provider.findOne({email: decoded.email}).then((pro) => {
                     patient.findById(body.id).then((pat) => {
                         if(pat.providers.includes(pro._id)) {
+                            pat.logs = pat.logs.sort(function(a, b){return b-a});
+                            pat.save();
                             res.json({logs: pat.logs})
                             res.status(200);
                             res.send();
@@ -282,7 +286,7 @@ app.post("/api/patient/updateLog", (req,res) => {
                 console.log(patLogs);
 
                 for(var i = 0; i < patLogs.length; i -= -1) {
-                    if(isToday(new Date(JSON.parse(patLogs[i]).date))) {
+                    if(patLogs[i].date == body.log.date) {
                         console.log("Found")
                         today = i;
                     }

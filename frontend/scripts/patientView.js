@@ -24,6 +24,7 @@ export const updateScrollArrows = function(maxScroll) {
 }
 
 export const renderLog = function(log) {
+    console.log(log);
     $("#root .logView").replaceWith(`
     <div class="logView column is-four-fifths-desktop is-two-thirds-mobile is-mobile">
         <div class="logMood">
@@ -58,7 +59,8 @@ export const renderLog = function(log) {
             $(`#root .logMoodSelector #${evt.target.id}`).attr("src", `/imgs/mood${evt.target.id}_active.png`);
             log.object.mood = evt.target.id;
         });
-        $("#root .logView .button").on("click", function() {
+        $("#root .logView .button").on("click", function(e) {
+            log.object.message = $("#root .logDesc .textarea")[0].value;
             saveLog(log).then(function() {
                 $("#root .logView .button").html("Saved!");
             });
@@ -74,11 +76,12 @@ export const loadView = function() {
         "July", "August", "September", "October", "November", "December"];
     // render log dates listview
     getLogs().then(y => {
-        let today = y.find(x => {
-            return isToday(new Date(x.date));
-        });
-        if (!today) {
+        let today = false;
+        today = y.filter((log) => { return isToday(new Date(log.date)) !== false});
+        console.log(today);
+        if (today.length == 0) {
             emptyLog().then(() => {
+                console.log("emptied")
                 getLogs().then(z => { y = z; });
             });
         }
@@ -86,19 +89,19 @@ export const loadView = function() {
             let date = new Date(x.date);
             console.log(width)
             $("#root .datePanel").append(`
-            <div id="${x.id}" class="dateObj">
+            <div id="${x.date}" class="dateObj">
                 <h1>${width > 500 ? monthNames[date.getMonth()] : monthNames[date.getMonth()].slice(0,3)} ${date.getDate()}, ${date.getFullYear()}</h1>
             </div>
             `);
-            $(`#root .datePanel #${x.id}`).on("click", function() {
+            $(`#root .datePanel #${x.date}`).on("click", function() {
                 $("#root .datePanel .activeDate").removeClass("activeDate");
-                $(`#root .datePanel #${x.id}`).addClass("activeDate");
+                $(`#root .datePanel #${x.date}`).addClass("activeDate");
                 renderLog(x);
             });
         });
-        if (today) {
-            $(`#root .datePanel #${today.id}`).addClass("activeDate");
-            renderLog(today);
+        if (today.length !== 0) {
+            $(`#root .datePanel #${today[0].date}`).addClass("activeDate");
+            renderLog(today[0]);
         }
         $("#root .datePanel").append(`<div class="scrollUpArrow"></div>`);
         $("#root .datePanel").append(`<div class="scrollDownArrow"></div>`);

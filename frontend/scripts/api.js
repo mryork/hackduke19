@@ -63,18 +63,74 @@ function register(event) {
     });
 }
 
-function realgetLogs() {
-    fetch('http://clickin.space/api/', {
+function emptyLog() {
+    return new Promise((resolve, rej) =>  {
+        var empty = {
+            date: Date.now(),
+            object: {
+                mood: 3,
+                message: ""
+            }
+        };
+    fetch('http://localhost/api/patient/updateLog', {
         method: 'post',
-        body: JSON.stringify()
+        body: JSON.stringify({
+            token: localStorage.token,
+            log: empty
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
     }).then((res) => {
-
-    }).catch(() => {
-        // No.
+        resolve();
     })
+    });
+}
+
+function saveLog(log) {
+    return new Promise((resolve, rej) =>  {
+    fetch('http://localhost/api/patient/updateLog', {
+        method: 'post',
+        body: JSON.stringify({
+            token: localStorage.token,
+            log: log
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((res) => {
+        resolve();
+    })
+    });
 }
 
 function getLogs() {
+    return new Promise((resolve, rej) =>  {
+        let logs = [];
+        fetch('http://localhost/api/patient/getLogs', {
+        method: 'post',
+        body: JSON.stringify({
+            token: localStorage.token
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((res) => {
+        return res.json();
+    }).then((res) => {
+        logs = res.logs;
+        for(var i = 0; i < logs.length; i++) {
+            logs[i] = {
+                date: logs[i].date,
+                object: logs[i].object
+            };
+        }
+        resolve(logs);
+    });
+    }
+)};
+
+function oldgetLogs() {
     return new Promise((res, rej) => {
         setTimeout(() => {
             res([
@@ -481,16 +537,4 @@ function getLogs() {
             ])
         })
     })
-}
-
-function saveLog(log) {
-    return new Promise((res, rej) => {
-        res("Saved!");
-    })
-}
-
-function emptyLog() {
-    return new Promise((res, rej) => {
-       res("Created!"); 
-    });
 }

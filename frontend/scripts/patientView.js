@@ -72,7 +72,7 @@ export const renderProviderForm = function() {
     $(".navbar .newProvider").replaceWith(`
     <div class="newProviderForm">
         <form id="providerInputForm"><input class="input" type="text" placeholder="Provider Email"></form>
-        <button class="button is-rounded is-submit">Submit</button>
+        <button class="button is-rounded is-submit" type="submit">Submit</button>
         <button class="button is-rounded is-cancel">Cancel</button>
     </div>
     `);

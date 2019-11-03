@@ -1,5 +1,7 @@
 document.getElementById("login").addEventListener("submit", login);
 
+document.getElementById("providerInputForm").addEventListener("submit", addProvider);
+
 function login(event) {
     event.preventDefault();
 

@@ -29,7 +29,6 @@ function login(event) {
     
             window.localStorage.setItem("token", token);
             window.location.replace("http://carelog.online/" + type);
-            window.location.reload();
         }
     });
 }

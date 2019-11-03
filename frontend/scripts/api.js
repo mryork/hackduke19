@@ -50,6 +50,65 @@ function addProvider(email) {
     })
 }
 
+function getPatientInfo(id) {
+    return new Promise((resolve, rej) =>  {
+        let logs = [];
+        fetch('http://carelog.online/api/patient/getLogs', {
+        method: 'post',
+        body: JSON.stringify({
+            token: localStorage.token,
+            id: id
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((res) => {
+        return res.json();
+    }).then((res) => {
+        resolve(res);
+    });
+    });
+}
+
+function getPatients() {
+    return new Promise((resolve, rej) =>  {
+        let logs = [];
+        fetch('http://carelog.online/api/patient/getLogs', {
+        method: 'post',
+        body: JSON.stringify({
+            token: localStorage.token
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((res) => {
+        return res.json();
+    }).then((res) => {
+        resolve(res);
+    });
+    });
+}
+
+function getPatientLogs(id) {
+    return new Promise((resolve, rej) =>  {
+        let logs = [];
+        fetch('http://carelog.online/api/patient/getLogs', {
+        method: 'post',
+        body: JSON.stringify({
+            token: localStorage.token,
+            id: id
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((res) => {
+        return res.json();
+    }).then((res) => {
+        resolve(res);
+    });
+    });
+}
+
 function register(event) {
     event.preventDefault();
     

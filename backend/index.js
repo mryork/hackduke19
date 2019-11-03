@@ -150,6 +150,8 @@ app.post("/api/patient/associate", (req,res) => {
             patient.findOne({email: decoded.email}).then((pat) => {
                 provider.findOne({email: body.email}).then((pro) => {
                     if(!pro) {
+                        console.log(pro);
+                        console.group(body);
                         res.json({error: "Provider does not exist"})
                         res.send();
                     } else {

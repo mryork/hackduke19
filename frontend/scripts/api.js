@@ -45,8 +45,8 @@ function addProvider(email) {
             'Content-Type': 'application/json'
         }
     }).then((response) => {
-        window.location.replace('http://carelog.online/patient')
-        window.location.reload();
+        //window.location.replace('http://carelog.online/patient')
+        //window.location.reload();
     })
 }
 

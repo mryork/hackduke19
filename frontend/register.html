@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="column is-two-thirds">
-                      <form id="register">
+                      <form id="register-form">
 
                             <div class="field is-horizontal">
                                     <div class="field-label is-large">
@@ -142,7 +142,7 @@
                                             Sign Up
                                           </button>
                                         </div>
-                                        <p id="login-error" class="help is-danger is-size-4">
+                                        <p id="register-error" class="help is-danger is-size-4">
                                           
                                         </p>
                                       </div>
@@ -157,7 +157,11 @@
           </section>
    
           <script src="scripts/api.js"></script>        
-    
+          <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script>document.getElementById("register-form").addEventListener('submit', register)</script>
 
 
 </body>

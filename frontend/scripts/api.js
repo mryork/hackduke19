@@ -34,11 +34,7 @@ function login(event) {
     });
 }
 
-function addProvider(event) {
-    event.preventDefault();
-
-    const email = event.target[0].value;
-
+function addProvider(email) {
     fetch('http://carelog.online/api/patient/associate', {
         method: 'post',
         body: JSON.stringify({

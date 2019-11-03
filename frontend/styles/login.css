@@ -24,5 +24,9 @@ html {
     margin-top: 40px; 
 }
 
+.sign-up:hover {
+    background-color: #4F6D7A !important;
+    color: white !important;
+}
 
 

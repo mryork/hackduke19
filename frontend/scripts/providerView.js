@@ -68,15 +68,16 @@ export const loadStats = function(id) {
             dates.push(monthNames[date.getMonth()].slice(0,3) + ' ' + date.getDate());
             analyzeSentiment(log.object.message).then(sent => {
                 sentimentData.push(Math.floor((Number(sent.sentiment)+2)*5/3));
+                console.log(sentimentData);
             });
         });
         console.log(moodData);
         console.log(sentimentData);
         console.log(dates)
         var newSentiment = [];
-        for (var i = 0; i < sentimentData.length; i++) {
-            newSentiment.push(sentimentData[i]);
-        }
+        sentimentData.forEach(i => {
+            newSentiment.push(i);
+        });
         console.log(newSentiment)
         var myChart = new Chart(ctx, {
             type: 'line',

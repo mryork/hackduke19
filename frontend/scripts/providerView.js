@@ -67,7 +67,7 @@ export const loadStats = function(id) {
             var date = new Date(log.object.mood);
             dates.push(monthNames[date.getMonth()].slice(0,3) + ' ' + date.getDate());
             analyzeSentiment(log.object.message).then(sent => {
-                sentimentData.push(Number(Math.floor((sent.sentiment+2)*5/3)));
+                sentimentData.push(Math.floor((Number(sent.sentiment)+2)*5/3));
             });
         });
         console.log(moodData);

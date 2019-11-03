@@ -64,7 +64,7 @@ async function getSentiments(logs) {
             });
         }
 
-        setTimeout(() => {res(sentimentData)}, 1000);
+        setTimeout(() => {res(sentimentData)}, 2000);
     });
 }
 

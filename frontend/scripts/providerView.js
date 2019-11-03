@@ -70,7 +70,7 @@ async function getSentiments(logs) {
             }
         }
 
-        res(sentimentData);
+        setTimeout(() => {res(sentimentData)}, 100);
     });
 }
 
@@ -86,9 +86,7 @@ export const loadStats = function(id) {
             var date = new Date(log.object.mood);
             dates.push(monthNames[date.getMonth()].slice(0,3) + ' ' + date.getDate());
         });
-        var curtime = Date.now();
         getSentiments(logs).then(sentiments => {
-            while (Date.now() < curtime+30);
             console.log(moodData);
             console.log(sentiments);
             console.log(dates)

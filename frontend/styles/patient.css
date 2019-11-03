@@ -4,11 +4,8 @@
 
 html {
     overflow-y: auto;
-}
+} 
 
-.bg-blue {
-    background-color: blue;
-}
 
 body {
     height: 100vh;
@@ -16,18 +13,6 @@ body {
 
 .navbar {
     height: 10%;
-    padding: 2%;
-}
-
-.navbar-brand {
-    height: 98%;
-    min-height: 0;
-    margin: auto 0;
-}
-
-.navbar-item img {
-    padding: auto;
-    height: fit-content;
 }
 
 .navbar-item .button {

@@ -42,7 +42,7 @@ export const renderLog = function(log) {
             <h1 class="subtitle is-3">Description</h1>
             <textarea class="textarea has-fixed-size" rows="4" cols="50">${log.object.message}</textarea>
         </div>
-        <button class="button">Save</button>
+        <button class="button is-medium is-rounded">Save</button>
     </div>
     `);
 

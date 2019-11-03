@@ -89,6 +89,7 @@ export const loadStats = function(id) {
                 }]
             },
             options: {
+                responsive: true,
                 tooltips: {
                     mode: 'index',
                     intersect: false

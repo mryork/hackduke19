@@ -32,6 +32,25 @@ function login(event) {
     });
 }
 
+function addProvider(event) {
+    event.preventDefault();
+
+    const email = event.target[0].value;
+
+    fetch('http://carelog.online/api/auth/associate', {
+        method: 'post',
+        body: JSON.stringify({
+            email: email,
+            token: window.localStorage.getItem('token')
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((response) => {
+        window.location.replace('http://carelog.online/patient')
+    })
+}
+
 function register(event) {
     event.preventDefault();
     

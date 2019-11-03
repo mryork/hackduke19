@@ -1,3 +1,4 @@
+import Chart from 'chart.js';
 
 export const isToday = function(date) {
     let todaysDate = new Date();
@@ -52,6 +53,32 @@ export const renderLog = function(log) {
     // saveLog(log);
 }
 
+export const loadStats = function(id) {
+    var ctx = $(".modal-content #patChart");
+    var moodData = [];
+    var sentimentData = [];
+    getLogs(id).then(logs => {
+        logs.forEach(log => {
+            moodData.push(log.object.mood);
+            analyzeSentiment(log.object.message).then(sent => {
+                sentimentData.push(sent.sentiment);
+            });
+        });
+        
+    });
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        labels: [ 'Red', 'Blue' ],
+        datasets: [{
+            label: 'Patient Mood',
+            data: moodData
+        }, {
+            label: 'Patient Sentiment',
+            data: sentimentData
+        }]
+    });
+}
+
 export const loadView = function() {
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -69,6 +96,17 @@ export const loadView = function() {
         });
         $(`#root .datePanel .select select`).on("change", function(opt) {
             console.log(opt)
+            // load patient statistics
+            $("#root .navbar #patStats").removeClass("is-light");
+            $("#root .navbar #patStats").addClass("is-cancel");
+            $("#root .navbar #patStats").unbind();
+            $("#root .navbar #patStats").on("click", function() {
+                loadStats(opt.target.value);
+                $(".modal").addClass("is-active");
+                $(".modal-card-foot .button").on("click", function() {
+                    $(".modal").removeClass("is-active");
+                });
+            });
             // render log dates listview
             getPatientLogs(opt.target.value).then(y => {
                 y = y.logs;

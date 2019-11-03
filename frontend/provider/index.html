@@ -38,9 +38,12 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                   <div class="buttons">
-                    <a class="button is-rounded is-medium is-submit" id="logout">
+                    <button class="button is-rounded is-medium is-light" id="patStats">
+                        <strong>Statistics</strong>
+                    </button>
+                    <button class="button is-rounded is-medium is-submit" id="logout">
                       <strong>Logout</strong>
-                    </a>
+                    </button>
                   </div>
                 </div>
             </div>
@@ -57,6 +60,15 @@
             </div>
         </div>
         <div class="logView column is-four-fifths-desktop is-two-thirds-mobile is-mobile"></div>
+    </div>
+
+    <div class="modal">
+        <div class="modal-content">
+            <div id="patChart"></div>
+        </div>
+        <div class="modal-card-foot">
+            <button class="button is-cancel">Back</button>
+        </div>
     </div>
 
 </body>
@@ -91,17 +103,21 @@
     });
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"></script>
 <script src="../scripts/providerView.js" type="module"></script>
 <script src="../scripts/api.js"></script>
 <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-  <script>
-        document.getElementById("logout").addEventListener("click", logout);
-        
-        if(window.localStorage.getItem("token") == undefined) {
-            window.location.replace("http://carelog.online/login.html")
-        }</script>
+  crossorigin="anonymous">
+</script>
+<script>
+    document.getElementById("logout").addEventListener("click", logout);
+    
+    if(window.localStorage.getItem("token") == undefined) {
+        window.location.replace("http://carelog.online/login.html")
+    }
+</script>
 </html>
 

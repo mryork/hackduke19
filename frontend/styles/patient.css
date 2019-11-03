@@ -151,3 +151,21 @@ body {
     color: rgb(12, 86, 126);
     border: solid 2px rgb(12, 86, 126);
 }
+
+.button.is-light {
+    background-color: rgb(239, 253, 255);
+    color: rgb(82, 156, 196);
+    border: rgb(82, 156, 196);
+}
+
+.button.is-light:hover {
+    background-color: rgb(219, 233, 235);
+    color: rgb(62, 136, 176);
+    border: rgb(62, 136, 176);
+}
+
+.button.is-light:active {
+    background-color: rgb(199, 213, 215);
+    color: rgb(42, 116, 156);
+    border: rgb(42, 116, 156);
+}

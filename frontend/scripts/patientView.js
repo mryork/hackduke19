@@ -42,7 +42,7 @@ export const renderLog = function(log) {
             <h1 class="subtitle is-3">Description</h1>
             <textarea class="textarea has-fixed-size" rows="4" cols="50">${log.object.message}</textarea>
         </div>
-        <button class="button is-medium is-rounded">Save</button>
+        <button class="button is-medium is-rounded is-submit">Save</button>
     </div>
     `);
 
@@ -73,23 +73,23 @@ export const renderLog = function(log) {
 export const renderProviderForm = function() {
     $(".navbar .newProvider").replaceWith(`
     <div class="newProviderForm">
-        <input class="input" type="text" placeholder="Provider Email">
-        <button class="button is-submit">Submit</button>
-        <button class="button is-cancel">Cancel</button>
+        <form id="providerInputForm"><input class="input" type="text" placeholder="Provider Email"></form>
+        <button class="button is-rounded is-submit">Submit</button>
+        <button class="button is-rounded is-cancel">Cancel</button>
     </div>
     `);
-    $("#root .newProviderForm .is-submit").on("click", function() {
-        addProvider($("#root .newProviderForm .input").html());
-        $("#root .newProviderForm .is-submit").replaceWith(`
-        <button class="button is-cancel newProvider">New Provider</button>
+    $(".navbar .newProviderForm .is-submit").on("click", function() {
+        addProvider($(".navbar .newProviderForm .input").html());
+        $(".navbar .newProviderForm").replaceWith(`
+        <button class="button is-medium is-rounded is-cancel newProvider"><strong>New Provider</strong></button>
         `);
         $(".navbar .newProvider").on("click", function() {
             renderProviderForm();
         });
     });
-    $("#root .newProviderForm .is-cancel").on("click", function() {
-        $("#root .newProviderForm .is-cancel").replaceWith(`
-        <button class="button is-cancel newProvider">New Provider</button>
+    $(".navbar .newProviderForm .is-cancel").on("click", function() {
+        $(".navbar .newProviderForm").replaceWith(`
+        <button class="button is-medium is-rounded is-cancel newProvider"><strong>New Provider</strong></button>
         `);
         $(".navbar .newProvider").on("click", function() {
             renderProviderForm();

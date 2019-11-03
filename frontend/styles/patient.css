@@ -15,30 +15,14 @@ body {
     height: 10%;
 }
 
-.navbar-item .button {
-    background-color: rgb(52, 126, 166);
-    color: rgb(219, 233, 238);
+.navbar .newProviderForm {
+    display: flex;
+    flex-direction: row;
+    padding: 0 1.5em;
 }
 
-.navbar-item .button:hover {
-    background-color: rgb(22, 116, 156);
-    color: rgb(234, 248, 253);
-}
-
-.navbar-item .button:active {
-    background-color: rgb(2, 86, 116);
-    color: rgb(234, 248, 253);
-}
-
-.navbar-item .newProvider {
-    background-color: white;
-    color: rgb(22, 116, 156);
-}
-
-.navbar-item .newProvider:hover {
-    background-color: rgb(243,243,243);
-    
-    color: rgb(22, 116, 156);
+.navbar form {
+    margin: 0 .5em;
 }
 
 #root {
@@ -134,17 +118,35 @@ body {
     box-shadow: none;
 }
 
-.logView .button {
+.button.is-submit {
     background-color: rgb(52, 126, 166);
     color: rgb(219, 233, 238);
 }
 
-.logView .button:hover {
+.button.is-submit:hover {
     background-color: rgb(22, 116, 156);
     color: rgb(234, 248, 253);
 }
 
-.logView .button:active {
+.button.is-submit:active {
     background-color: rgb(2, 86, 116);
     color: rgb(234, 248, 253);
+}
+
+.button.is-cancel {
+    background-color: rgb(219, 233, 238);
+    color: rgb(52, 126, 166);
+    border: solid 2px rgb(52, 126, 166);
+}
+
+.button.is-cancel:hover {
+    background-color: rgb(199, 213, 218);
+    color: rgb(32, 106, 146);
+    border: solid 2px rgb(32, 106, 146);
+}
+
+.button.is-cancel:active {
+    background-color: rgb(179, 193, 198);
+    color: rgb(12, 86, 126);
+    border: solid 2px rgb(12, 86, 126);
 }

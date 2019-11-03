@@ -30,26 +30,6 @@ body {
     height: fit-content;
 }
 
-.navbar-item .button {
-    background-color: rgb(52, 126, 166);
-    color: rgb(219, 233, 238);
-}
-
-.navbar-item .button:hover {
-    background-color: rgb(22, 116, 156);
-    color: rgb(234, 248, 253);
-}
-
-.navbar-item .button:active {
-    background-color: rgb(2, 86, 116);
-    color: rgb(234, 248, 253);
-}
-
-.navbar .newProviderForm {
-    display: flex;
-    flex-direction: row;
-}
-
 #root {
     margin: 0;
     display: flex;

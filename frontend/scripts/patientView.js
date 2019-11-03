@@ -75,7 +75,7 @@ export const renderProviderForm = function() {
         <button class="button is-rounded is-cancel">Cancel</button>
     </div>
     `);
-    $(".navbar .newProviderForm .is-submit").on("click", function() {
+    $(".navbar .newProviderForm .is-submit")[0].on("click", function() {
         addProvider($(".navbar .newProviderForm .input").html().value);
         $(".navbar .newProviderForm").replaceWith(`
         <button class="button is-medium is-rounded is-cancel newProvider"><strong>New Provider</strong></button>

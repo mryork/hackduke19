@@ -96,10 +96,6 @@ export const loadStats = function(id) {
                     mode: 'index',
                     intersect: false
                 },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                },
                 scales: {
                     xAxes: [{
                         display: true,

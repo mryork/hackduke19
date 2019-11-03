@@ -207,7 +207,7 @@ app.post("/api/patient/dissociate", (req,res) => {
     });
 })
 
-app.get("/api/provider/getPatients", (req,res) => {
+app.post("/api/provider/getPatients", (req,res) => {
     const body = req.body;
 
     jwt.verify(body.token, privateKey, function(err, decoded) {

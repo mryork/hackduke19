@@ -75,8 +75,9 @@ export const loadStats = function(id) {
         console.log(dates)
         var newSentiment = [];
         for (var i = 0; i < sentimentData.length; i++) {
-            newSentiment[i] = sentimentData[i];
+            newSentiment.push(sentimentData[i]);
         }
+        console.log(newSentiment)
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {

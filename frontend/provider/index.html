@@ -38,7 +38,7 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                   <div class="buttons">
-                    <a class="button is-rounded is-medium is-submit">
+                    <a class="button is-rounded is-medium is-submit" id="logout">
                       <strong>Logout</strong>
                     </a>
                   </div>
@@ -98,6 +98,11 @@
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.19.0/axios.min.js" integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs=" crossorigin="anonymous"></script>
-
+  <script>
+        document.getElementById("logout").addEventListener("click", logout);
+        
+        if(window.localStorage.getItem("token") == undefined) {
+            window.location.replace("http://carelog.online/login.html")
+        }</script>
 </html>
 

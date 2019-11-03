@@ -63,45 +63,49 @@ export const loadView = function() {
             getPatientInfo(id).then(obj => {
                 console.log("HI" + obj)
                 $("#root .datePanel .select select").append(`
-                <option id="${id}">${obj.name}</option>
+                <option value="${id}">${obj.name}</option>
                 `);
-                $(`#root .datePanel .select #${id}`).on("click", function() {
-                    // render log dates listview
-                    getPatientLogs(id).then(y => {
-                        let today = false;
-                        today = y.filter((log) => { return isToday(new Date(log.date)) !== false});
-                        y.forEach(x => {
-                            let date = new Date(x.date);
-                            $("#root .datePanel").append(`
-                            <div id="${x.date}" class="dateObj">
-                                <h1>${width > 500 ? monthNames[date.getMonth()] : monthNames[date.getMonth()].slice(0,3)} ${date.getDate()}, ${date.getFullYear()}</h1>
-                            </div>
-                            `);
-                            $(`#root .datePanel #${x.date}`).on("click", function() {
-                                $("#root .datePanel .activeDate").removeClass("activeDate");
-                                $(`#root .datePanel #${x.date}`).addClass("activeDate");
-                                renderLog(x);
-                            });
-                        });
-                        if (today.length !== 0) {
-                            $(`#root .datePanel #${today[0].date}`).addClass("activeDate");
-                            renderLog(today[0]);
-                        }
-                        $("#root .datePanel").append(`<div class="scrollUpArrow"></div>`);
-                        $("#root .datePanel").append(`<div class="scrollDownArrow"></div>`);
-                        $("#root .datePanel .scrollUpArrow").css("left", $("#root .datePanel").width()/2-16);
-                        $("#root .datePanel .scrollDownArrow").css("left", $("#root .datePanel").width()/2-16);
-                        $("#root .datePanel .scrollDownArrow").css("top", $(window).height()*.97-10);
-                        $(window).resize(function() {
-                            $("#root .datePanel .scrollUpArrow").css("left", $("#root .datePanel").width()/2-16);
-                            $("#root .datePanel .scrollDownArrow").css("left", $("#root .datePanel").width()/2-16);
-                        });
-                        let maxScroll = $("#root .datePanel .dateObj").height()*(y.length)-$(window).height()*.9;
-                        updateScrollArrows(maxScroll);
-                        $("#root .datePanel").on("scroll", function() {
-                            updateScrollArrows(maxScroll);
-                        });
+            });
+        });
+        $(`#root .datePanel .select select`).on("change", function(opt) {
+            console.log(opt)
+            // render log dates listview
+            getPatientLogs(opt.target.value).then(y => {
+                y = y.logs;
+                let today = false;
+                today = y.filter((log) => { return isToday(new Date(log.date)) !== false});
+                $("#root .datePanel .dateObj").remove();
+                y.forEach(x => {
+                    let date = new Date(x.date);
+                    $("#root .logView").html("");
+                    $("#root .datePanel").append(`
+                    <div id="${x.date}" class="dateObj">
+                        <h1>${width > 500 ? monthNames[date.getMonth()] : monthNames[date.getMonth()].slice(0,3)} ${date.getDate()}, ${date.getFullYear()}</h1>
+                    </div>
+                    `);
+                    $(`#root .datePanel #${x.date}`).on("click", function() {
+                        $("#root .datePanel .activeDate").removeClass("activeDate");
+                        $(`#root .datePanel #${x.date}`).addClass("activeDate");
+                        renderLog(x);
                     });
+                });
+                if (today.length !== 0) {
+                    $(`#root .datePanel #${today[0].date}`).addClass("activeDate");
+                    renderLog(today[0]);
+                }
+                $("#root .datePanel").append(`<div class="scrollUpArrow"></div>`);
+                $("#root .datePanel").append(`<div class="scrollDownArrow"></div>`);
+                $("#root .datePanel .scrollUpArrow").css("left", $("#root .datePanel").width()/2-16);
+                $("#root .datePanel .scrollDownArrow").css("left", $("#root .datePanel").width()/2-16);
+                $("#root .datePanel .scrollDownArrow").css("top", $(window).height()*.97-10);
+                $(window).resize(function() {
+                    $("#root .datePanel .scrollUpArrow").css("left", $("#root .datePanel").width()/2-16);
+                    $("#root .datePanel .scrollDownArrow").css("left", $("#root .datePanel").width()/2-16);
+                });
+                let maxScroll = $("#root .datePanel .dateObj").height()*(y.length)-$(window).height()*.9;
+                updateScrollArrows(maxScroll);
+                $("#root .datePanel").on("scroll", function() {
+                    updateScrollArrows(maxScroll);
                 });
             });
         });

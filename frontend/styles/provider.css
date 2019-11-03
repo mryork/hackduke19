@@ -1,0 +1,154 @@
+/* * { 
+    margin: 0 auto;
+} */
+
+html {
+    overflow-y: auto;
+}
+
+.bg-blue {
+    background-color: blue;
+}
+
+body {
+    height: 100vh;
+}
+
+.navbar {
+    height: 10%;
+    padding: 2%;
+}
+
+.navbar-brand {
+    height: 98%;
+    min-height: 0;
+    margin: auto 0;
+}
+
+.navbar-item img {
+    padding: auto;
+    height: fit-content;
+}
+
+.navbar-item .button {
+    background-color: rgb(52, 126, 166);
+    color: rgb(219, 233, 238);
+}
+
+.navbar-item .button:hover {
+    background-color: rgb(22, 116, 156);
+    color: rgb(234, 248, 253);
+}
+
+.navbar-item .button:active {
+    background-color: rgb(2, 86, 116);
+    color: rgb(234, 248, 253);
+}
+
+#root {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    max-height: 90%;
+}
+
+.datePanel {
+    overflow-y: scroll;
+    padding: 0;
+    /* border: solid 1px black; */
+}
+
+.datePanel::-webkit-scrollbar {
+    display: none;
+}
+
+.datePanel .dateObj {
+    /* border: dashed 1px red; */
+    background-color: rgb(219, 233, 238);
+    text-align: center;
+}
+
+.datePanel .dateObj h1 {
+    width: 90%;
+    padding: .5em;
+}
+
+.datePanel .dateObj:hover {
+    background-color: rgb(79, 109, 122);
+    color: rgb(219, 233, 238);
+}
+
+.datePanel .activeDate {
+    background-color: rgb(22, 96, 136);
+    color: rgb(219, 233, 238);
+}
+
+.datePanel .activeDate:hover {
+    background-color: rgb(22, 96, 136);
+    color: rgb(219, 233, 238);
+}
+
+.datePanel .scrollUpArrow.active {
+    position: absolute;
+    top: 12%;
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-bottom: 20px solid rgba(74, 111, 165, 0.7);
+    pointer-events: none;
+}
+
+.datePanel .scrollDownArrow.active {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-top: 20px solid rgba(74, 111, 165, 0.7);
+    pointer-events: none;
+}
+
+.logView {
+    /* border: solid 1px black; */
+    background-color: rgb(250, 250, 252);
+    padding: 1em;
+}
+
+.logView .subtitle {
+    margin: 0;
+    margin-bottom: .2em;
+}
+
+.logView .logMoodSelector img {
+    width: 5vw;
+}
+
+.logView .textarea {
+    margin: .5em 0;
+}
+
+.logView .textarea:focus {
+    background-color: rgb(234, 248, 253);
+    border-color: rgb(22, 96, 136);
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.logView .button {
+    background-color: rgb(52, 126, 166);
+    color: rgb(219, 233, 238);
+}
+
+.logView .button:hover {
+    background-color: rgb(22, 116, 156);
+    color: rgb(234, 248, 253);
+}
+
+.logView .button:active {
+    background-color: rgb(2, 86, 116);
+    color: rgb(234, 248, 253);
+}

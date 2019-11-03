@@ -19,7 +19,7 @@ const saltRounds = 10;
 app.use(cookieParser())
 app.use(cors());
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}))
+//app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('../frontend'))
 
 // Define our mongoose models
@@ -45,7 +45,7 @@ var provider = mongoose.model('Provider', new mongoose.Schema({
 app.post("/api/auth/login", (req,res) => {
     const body = req.body;
     var userType;
-
+    
     if(body.type == "patient") {
         userType = patient;
     } else if (body.type == "provider") {

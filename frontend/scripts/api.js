@@ -1,14 +1,72 @@
+document.getElementById("login").addEventListener("submit", login);
+document.getElementById("register").addEventListener("submit", register)
+
 function login(event) {
-    const username = event.target.
-    fetch('http://clickin.space/api/', {
-        method: 'post'
-    })
+    event.preventDefault();
+
+    const type = event.target[0].value;
+    const username = event.target[1].value;
+    const password = event.target[2].value;
+
+    fetch('http://localhost/api/auth/login', {
+        method: 'post',
+        body: JSON.stringify({
+            type: type,
+            email: username,
+            password: password
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((res) => {
+        return res.json();
+    }).then((res) => {
+        if(res.error) {
+            document.getElementById("login-error").innerHTML = res.error;
+        } else {
+            const token = res.token;
+    
+            window.localStorage.setItem("token", token);
+        }
+    });
+}
+
+function register(event) {
+    event.preventDefault();
+    
+    const type = event.target[0].value;
+    const name = event.target[1].value;
+    const phone = event.target[2].value;
+    const email = event.target[3].value;
+    const password = event.target[4].value;
+
+    fetch('http://localhost/api/auth/register', {
+        method: 'post',
+        body: JSON.stringify({
+            type: type,
+            name: name,
+            phone: phone,
+            email: email,
+            password: password
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then((res) => {
+        return res.json();
+    }).then((res) => {
+        if(res.error) {
+            document.getElementById("register-error").innerHTML = res.error;
+        } else {
+            window.location.replace("http://localhost/login.html");
+        }
+    });
 }
 
 function realgetLogs() {
     fetch('http://clickin.space/api/', {
         method: 'post',
-        body: JSON.stringify(innards)
+        body: JSON.stringify()
     }).then((res) => {
 
     }).catch(() => {

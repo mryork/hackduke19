@@ -60,7 +60,7 @@ async function getSentiments(logs) {
         var sentimentData = [];
 
         for (var i = 0; i < logs.length; i++) {
-            analyzeSentiment(logs[i].object.message).then(sent => {
+            await analyzeSentiment(logs[i].object.message).then(sent => {
                 sentimentData.push(Math.floor((Number(sent.sentiment)+2)*5/3));
             });
         }

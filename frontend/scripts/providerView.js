@@ -1,4 +1,4 @@
-import * as Chart from '/node_modules/chart.js/dist/Chart.js';
+import * as chart from '/node_modules/chart.js/dist/Chart.js';
 
 export const isToday = function(date) {
     let todaysDate = new Date();
@@ -66,7 +66,7 @@ export const loadStats = function(id) {
         });
         
     });
-    var myChart = new Chart(ctx, {
+    var myChart = new chart(ctx, {
         type: 'line',
         labels: [ 'Red', 'Blue' ],
         datasets: [{

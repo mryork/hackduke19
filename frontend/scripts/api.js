@@ -1,5 +1,4 @@
 document.getElementById("login").addEventListener("submit", login);
-document.getElementById("logout").addEventListener("click", logout);
 
 function login(event) {
     event.preventDefault();
@@ -28,6 +27,7 @@ function login(event) {
     
             window.localStorage.setItem("token", token);
             window.location.replace("http://carelog.online/" + type);
+            window.location.reload();
         }
     });
 }
@@ -48,6 +48,7 @@ function addProvider(event) {
         }
     }).then((response) => {
         window.location.replace('http://carelog.online/patient')
+        window.location.reload();
     })
 }
 
@@ -82,6 +83,7 @@ function register(event) {
             document.getElementById("register-error").innerHTML = res.error;
         } else {
             window.location.replace("http://carelog.online/login.html");
+            window.location.reload();
         }
     });
 }

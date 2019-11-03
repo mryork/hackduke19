@@ -53,7 +53,7 @@ export const renderLog = function(log) {
 }
 
 export const loadStats = function(id) {
-    var ctx = $(".modal-content #patChart");
+    var ctx = $(".modal #patChart");
     var moodData = [];
     var sentimentData = [];
     getLogs(id).then(logs => {

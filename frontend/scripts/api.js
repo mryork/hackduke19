@@ -73,7 +73,7 @@ function getPatientInfo(id) {
 function getPatients() {
     return new Promise((resolve, rej) =>  {
         let logs = [];
-        fetch('http://carelog.online/api/patient/getLogs', {
+        fetch('http://carelog.online/api/provider/getPatients', {
         method: 'post',
         body: JSON.stringify({
             token: localStorage.token

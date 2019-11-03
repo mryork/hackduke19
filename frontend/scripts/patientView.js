@@ -1,5 +1,4 @@
 
-
 export const isToday = function(date) {
     let todaysDate = new Date();
     return (date.getDate() == todaysDate.getDate() &&
@@ -17,14 +16,13 @@ export const updateScrollArrows = function(maxScroll) {
     }
     if (Math.abs($("#root .datePanel").scrollTop() - maxScroll) < 5) {
         $("#root .datePanel .scrollDownArrow").removeClass("active");
-    } else {
+    } else if (maxScroll > 0) {
         $("#root .datePanel .scrollDownArrow").addClass("active");
         $("#root .datePanel .scrollDownArrow").css("opacity", `${(maxScroll-$("#root .datePanel").scrollTop())/maxScroll}`);
     }
 }
 
 export const renderLog = function(log) {
-    console.log(log);
     $("#root .logView").replaceWith(`
     <div class="logView column is-four-fifths-desktop is-two-thirds-mobile is-mobile">
         <div class="logMood">
@@ -111,16 +109,13 @@ export const loadView = function() {
     getLogs().then(y => {
         let today = false;
         today = y.filter((log) => { return isToday(new Date(log.date)) !== false});
-        console.log(today);
         if (today.length == 0) {
             emptyLog().then(() => {
-                console.log("emptied")
                 getLogs().then(z => { y = z; });
             });
         }
         y.forEach(x => {
             let date = new Date(x.date);
-            console.log(width)
             $("#root .datePanel").append(`
             <div id="${x.date}" class="dateObj">
                 <h1>${width > 500 ? monthNames[date.getMonth()] : monthNames[date.getMonth()].slice(0,3)} ${date.getDate()}, ${date.getFullYear()}</h1>

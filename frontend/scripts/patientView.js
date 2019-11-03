@@ -9,7 +9,7 @@ export const isToday = function(date) {
 
 export const renderLog = function(log) {
     $("#root .logView").replaceWith(`
-    <div class="logView column is-four-fifths">
+    <div class="logView column is-four-fifths-desktop is-two-thirds-mobile is-mobile">
         <div class="logMood">
             <h1 class="title is-3">Mood</h1>
             <h2 class="subtitle is-5">How are you feeling today?</h2>
@@ -43,7 +43,6 @@ export const renderLog = function(log) {
             log.object.mood = evt.target.id;
         });
         $("#root .logView .button").on("click", function() {
-            console.log('a')
             saveLog(log).then(function() {
                 $("#root .logView .button").html("Saved!");
             });
@@ -54,6 +53,7 @@ export const renderLog = function(log) {
 }
 
 export const loadView = function() {
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
     // render log dates listview
@@ -68,9 +68,10 @@ export const loadView = function() {
         }
         y.forEach(x => {
             let date = new Date(x.date);
+            console.log(width)
             $("#root .datePanel").append(`
             <div id="${x.id}" class="dateObj">
-                <h1>${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}</h1>
+                <h1>${width > 500 ? monthNames[date.getMonth()] : monthNames[date.getMonth()].slice(0,3)} ${date.getDate()}, ${date.getFullYear()}</h1>
             </div>
             `);
             $(`#root .datePanel #${x.id}`).on("click", function() {
@@ -83,6 +84,28 @@ export const loadView = function() {
             $(`#root .datePanel #${today.id}`).addClass("activeDate");
             renderLog(today);
         }
+        $("#root .datePanel").append(`<div class="scrollUpArrow"></div>`);
+        $("#root .datePanel").append(`<div class="scrollDownArrow"></div>`);
+        $("#root .datePanel .scrollUpArrow").css("left", $("#root .datePanel").width()/2-16);
+        $("#root .datePanel .scrollDownArrow").css("left", $("#root .datePanel").width()/2-16);
+        $("#root .datePanel .scrollDownArrow").css("top", $(window).height()*.97-10);
+        $(window).resize(function() {
+            $("#root .datePanel .scrollUpArrow").css("left", $("#root .datePanel").width()/2-16);
+            $("#root .datePanel .scrollDownArrow").css("left", $("#root .datePanel").width()/2-16);
+        })
+        $("#root .datePanel").on("scroll", function() {
+            console.log(Math.abs($("#root .datePanel").scrollTop() - ($("#root .datePanel .dateObj").height()*(y.length)-$(window).height()*.9)) < 5)
+            if ($("#root .datePanel").scrollTop() != 0) {
+                $("#root .datePanel .scrollUpArrow").addClass("active");
+            } else {
+                $("#root .datePanel .scrollUpArrow").removeClass("active");
+            }
+            if (Math.abs($("#root .datePanel").scrollTop() - ($("#root .datePanel .dateObj").height()*(y.length)-$(window).height()*.9)) < 5) {
+                $("#root .datePanel .scrollDownArrow").removeClass("active");
+            } else {
+                $("#root .datePanel .scrollDownArrow").addClass("active");
+            }
+        });
     });
 }
 

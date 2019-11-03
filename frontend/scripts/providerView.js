@@ -71,7 +71,8 @@ export const loadStats = function(id) {
             });
         });
         console.log(moodData);
-        console.log(sentimentData)
+        console.log(sentimentData);
+        console.log(dates)
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -91,7 +92,6 @@ export const loadStats = function(id) {
                 }]
             },
             options: {
-                responsive: true,
                 scales: {
                     xAxes: [{
                         display: true,

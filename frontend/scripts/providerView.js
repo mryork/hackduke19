@@ -59,11 +59,11 @@ async function getSentiments(logs) {
     return new Promise((res, rej) => {
         var sentimentData = [];
 
-        logs.forEach(log => {
+        for (var i = 0; i < logs.length; i++) {
             analyzeSentiment(log.object.message).then(sent => {
                 sentimentData.push(Math.floor((Number(sent.sentiment)+2)*5/3));
-            })
-        })
+            });
+        }
 
         res(sentimentData);
     });
@@ -72,7 +72,6 @@ async function getSentiments(logs) {
 export const loadStats = function(id) {
     var ctx = $(".modal #patChart");
     var moodData = [];
-    var sentimentData = [];
     var dates = [];
     
     getPatientLogs(id).then(logs => {

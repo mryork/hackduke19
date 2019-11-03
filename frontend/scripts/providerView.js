@@ -67,7 +67,7 @@ export const loadStats = function(id) {
             var date = new Date(log.object.mood);
             dates.push(monthNames[date.getMonth()].slice(0,3) + ' ' + date.getDate());
             analyzeSentiment(log.object.message).then(sent => {
-                sentimentData.push(Math.floor((sent.sentiment+2)*5/3));
+                sentimentData.push(Number(Math.floor((sent.sentiment+2)*5/3)));
             });
         });
         console.log(moodData);
@@ -86,7 +86,7 @@ export const loadStats = function(id) {
                     label: 'Patient Sentiment',
                     backgroundColor: 'rgba(48, 54, 242, .5)',
                     borderColor: 'rgba(48, 54, 242, .5)',
-                    data: Array(sentimentData),
+                    data: sentimentData,
                     fill: false
                 }]
             },

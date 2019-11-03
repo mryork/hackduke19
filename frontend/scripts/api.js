@@ -37,7 +37,7 @@ function addProvider(event) {
 
     const email = event.target[0].value;
 
-    fetch('http://carelog.online/api/auth/associate', {
+    fetch('http://carelog.online/api/patient/associate', {
         method: 'post',
         body: JSON.stringify({
             email: email,

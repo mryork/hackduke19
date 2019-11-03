@@ -56,11 +56,17 @@ export const renderLog = function(log) {
 }
 
 async function getSentiments(logs) {
-    var sentimentData = [];
-    analyzeSentiment(log.object.message).then(sent => {
-        sentimentData.push(Math.floor((Number(sent.sentiment)+2)*5/3));
+    return new Promise((res, rej) => {
+        var sentimentData = [];
+
+        logs.forEach(log => {
+            analyzeSentiment(log.object.message).then(sent => {
+                sentimentData.push(Math.floor((Number(sent.sentiment)+2)*5/3));
+            })
+        })
+
+        res(sentimentData);
     });
-    return sentimentData;
 }
 
 export const loadStats = function(id) {

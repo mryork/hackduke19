@@ -58,14 +58,16 @@ export const loadStats = function(id) {
     var sentimentData = [];
     getLogs(id).then(logs => {
         logs.forEach(log => {
+            moodData.push(Number(log.object.mood);
+    getPatientLogs(id).then(logs => {
+	console.log(logs);
+        logs.logs.forEach(log => {
             moodData.push(Number(log.object.mood));
             analyzeSentiment(log.object.message).then(sent => {
                 sentimentData.push(Math.floor((sent.sentiment+2)*5/3));
             });
         });
-        
-    });
-    var myChart = new Chart(ctx, {
+        var myChart = new Chart(ctx, {
         type: 'line',
         labels: [ 'Red', 'Blue' ],
         datasets: [{
@@ -75,6 +77,9 @@ export const loadStats = function(id) {
             label: 'Patient Sentiment',
             data: sentimentData
         }]
+    });
+console.log(moodData);
+console.log(sentimentData);
     });
 }
 
@@ -97,7 +102,7 @@ export const loadView = function() {
         $(".modal-content #patChart").css("width", width/2);
         $(".modal-content #patChart").css("height", height/2);
         $(`#root .datePanel .select select`).on("change", function(opt) {
-            console.log(opt)
+            console.log(opt.target.value)
             // load patient statistics
             $(".navbar #patStats").removeClass("is-light");
             $(".navbar #patStats").addClass("is-cancel");

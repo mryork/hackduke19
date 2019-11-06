@@ -1,3 +1,5 @@
+<p align="center"><img src="https://raw.githubusercontent.com/mryork/hackduke19/master/frontend/imgs/win.PNG" width="30%"/></p>
+
 ![Logo](frontend/imgs/careloglogo.png)
 <br>
 **carelog (n.)** - a 24-hour hackathon project made at [HackDuke 2019 (Code for Good)](http://hackduke.org/) by Adam Cogdell, Kenan Poole, (frontend) and Michael York (backend); a project aiming to lower the barriers to mental health care for everybody
